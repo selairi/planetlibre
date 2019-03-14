@@ -43,6 +43,7 @@ import feedparser
 import sqlite3
 import calendar
 import time
+import threading
 import webbrowser
 
 def procesar_blog(sql_conn, blog):
@@ -109,9 +110,25 @@ def generar_html(sql_conn):
 
     fout.close()
 
+# Esta clase sirve para gestionar los hilos
+class Hilos(threading.Thread):
+    def __init__(self, blog, semaforo):
+        threading.Thread.__init__(self)
+        self.sql_conn = None 
+        self.blog = blog
+        self.semaforo = semaforo
+
+    def run(self):
+        semaforo.acquire()
+        print('Procesando... {0}'.format(self.blog))
+        self.sql_conn = sqlite3.connect('feeds.db')
+        procesar_blog(self.sql_conn, self.blog)
+        self.sql_conn.commit()
+        self.sql_conn.close()
+        semaforo.release()
+
 
 # Se abre/crea la base de datos de feeds
-
 sql_conn = sqlite3.connect('feeds.db')
 sql_cursor = sql_conn.cursor()
 sql_cursor.execute("""
@@ -126,10 +143,15 @@ sql_conn.commit()
 
 # Se busca el listado de blogs en "blogs_feeds.txt" y se procesan
 fin = open("blogs_feeds.txt")
+semaforo = threading.Semaphore(10)  # Se permiten 10 a la vez
+hilos = []
 for blog in fin:
-    print('Procesando... {0}'.format(blog))
-    procesar_blog(sql_conn, blog)
+    hilo = Hilos(blog, semaforo)
+    hilos.append(hilo)
+    hilo.start()
 fin.close()
+for hilo in hilos:
+    hilo.join()
 
 # Se borran las entradas antiguas para que la base de datos no se haga enorme
 limpiar_base_datos(sql_conn)
@@ -137,6 +159,7 @@ limpiar_base_datos(sql_conn)
 # Se generan los html en el directorio salida
 generar_html(sql_conn)
 
+# Se cierra la base de datos
 sql_conn.close()
 
 # Se abre en el navegador la primera página de la salida
