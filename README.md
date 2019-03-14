@@ -17,7 +17,7 @@ Después se ejecuta con:
 
 # Salida generada
 
-Una vez ejecutado el comando "python3 planet.py", se generará en la carpeta "salida" una serie de archivos html con las entradas leídas desde los blogs.
+Una vez ejecutado el comando "python3 planet.py", se generará en la carpeta "salida" una serie de archivos html con las entradas leídas desde los blogs. Por defecto, se abrirá el navegador para comenzar a leer las entradas una vez finalizado el proceso.
 
 # Modificación / introducción de nuevos blogs
 
