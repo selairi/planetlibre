@@ -44,6 +44,7 @@ import sqlite3
 import calendar
 import time
 import threading
+import sys
 import webbrowser
 
 def procesar_blog(sql_conn, blog):
@@ -69,10 +70,16 @@ def limpiar_base_datos(sql_conn):
     sql_conn.commit()
 
 def cabecera_html(fout):
-    fout.write("""<!doctype html>
-<meta charset='utf-8' />
-<table>
-""")
+    fin = open("cabecera.html", 'r')
+    for line in fin:
+        fout.write(line)
+    fin.close()
+
+def pie_html(fout):
+    fin = open("pie.html", 'r')
+    for line in fin:
+        fout.write(line)
+    fin.close()
 
 def generar_html(sql_conn):
     n = 0
@@ -129,13 +136,14 @@ class Hilos(threading.Thread):
 
 
 # Se abre/crea la base de datos de feeds
+# TODO: Hacer una segunda tabla con el nombre del blog
 sql_conn = sqlite3.connect('feeds.db')
 sql_cursor = sql_conn.cursor()
 sql_cursor.execute("""
     create table if not exists feeds
     (
         blog text, titulo text, enlace text, fecha int,
-        primary key (blog, titulo)
+        primary key (enlace)
     );
     """)
 sql_conn.commit()
@@ -162,6 +170,13 @@ generar_html(sql_conn)
 # Se cierra la base de datos
 sql_conn.close()
 
-# Se abre en el navegador la primera página de la salida
-webbrowser.open('salida/pagina-1.html')
+# Se comprueban los argumentos de la línea de comandos
+navegadorOk = True
+for arg in sys.argv:
+    if '--no-browser' == arg:
+        navegadorOk = False
+
+if navegadorOk:
+    # Se abre en el navegador la primera página de la salida:
+    webbrowser.open('salida/pagina-1.html')
 
