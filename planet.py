@@ -74,7 +74,7 @@ def cabecera_html(fout, sql_cursor, numero_pagina):
     
     fin = open("cabecera.html", 'r')
     for line in fin:
-        if line == '<!-- Contenidos -->\n':
+        if '<!-- Contenidos -->\n' in line:
             i = 0
             for row in sql_cursor:
                 fecha = time.gmtime(int(row[3]))
