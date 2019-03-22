@@ -61,7 +61,6 @@ def procesar_blog(sql_conn, blog):
             values(?, ?, ?, ?);
         """, (d.feed.title, post.title, post.link, calendar.timegm(fecha)) )
     sql_conn.commit()
-    pass
 
 def limpiar_base_datos(sql_conn):
     # Se eliminan todas las entradas con una antigüedad de 1 año
@@ -178,7 +177,7 @@ sql_conn.close()
 navegadorOk = False
 for arg in sys.argv:
     if '--no-browser' == arg:
-        navegadorOk = False
+        navegadorOk = True
 
 if navegadorOk:
     # Se abre en el navegador la primera página de la salida:
