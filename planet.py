@@ -61,6 +61,7 @@ def procesar_blog(sql_conn, blog):
             values(?, ?, ?, ?);
         """, (d.feed.title, post.title, post.link, calendar.timegm(fecha)) )
     sql_conn.commit()
+    pass
 
 def limpiar_base_datos(sql_conn):
     # Se eliminan todas las entradas con una antigüedad de 1 año
@@ -69,17 +70,40 @@ def limpiar_base_datos(sql_conn):
     sql_cursor.execute("delete from feeds where fecha<? ", (fecha_hace_un_agno,))
     sql_conn.commit()
 
-def cabecera_html(fout):
+def cabecera_html(fout, sql_cursor, numero_pagina):
+    final_entradas = False
+    
     fin = open("cabecera.html", 'r')
     for line in fin:
+        if line == '<!-- Contenidos -->\n':
+            i = 0
+            for row in sql_cursor:
+                fecha = time.gmtime(int(row[3]))
+                fout.write("""
+                <tr>
+                    <td>{0}</td><td>{3}</td>
+                    <td><a href='{2}' target='blank'>{1}</a></td>
+                </tr>
+                """.format(row[0], row[1], row[2], "{0}-{1}-{2}".format(fecha[0], fecha[1], fecha[2])))
+                i += 1
+                if i == 1000:                                
+                    final_entradas = True
+                    break                                
+        
         fout.write(line)
+        
+    archivo_anterior = 'pagina-{0}.html'.format(numero_pagina - 1)
+    archivo_siguiente = 'pagina-{0}.html'.format(numero_pagina + 1)
+    
+    if numero_pagina > 1:
+        fout.write("<p><a href='{0}'>Anterior</a></p>".format(archivo_anterior))
+        
+    if final_entradas:
+        fout.write("<p><a href='{0}'>Siguiente</a></p>".format(archivo_siguiente))    
+           
     fin.close()
-
-def pie_html(fout):
-    fin = open("pie.html", 'r')
-    for line in fin:
-        fout.write(line)
-    fin.close()
+    
+    return final_entradas
 
 def generar_html(sql_conn):
     n = 0
@@ -87,34 +111,14 @@ def generar_html(sql_conn):
     sql_cursor = sql_conn.cursor()
     archivo_actual = 'pagina-{0}.html'.format(pagina)
     archivo_anterior = None
-    fout = open('salida/pagina-{0}.html'.format(pagina), 'w')
-    cabecera_html(fout)
-    for row in sql_cursor.execute("select blog, titulo, enlace, fecha from feeds order by fecha desc"):
-        n += 1
-        fecha = time.gmtime(int(row[3]))
-        fout.write("""
-        <tr>
-            <td>{0}</td><td>{3}</td>
-            <td><a href='{2}' target='blank'>{1}</a></td>
-        </tr>
-        """.format(row[0], row[1], row[2], "{0}-{1}-{2}".format(fecha[0], fecha[1], fecha[2])))
-        if n % 1000 == 0:
-            pagina += 1
-            fout.write('</table>')
-            archivo_siguiente = 'pagina-{0}.html'.format(pagina)
-            fout.write("<p>")
-            if archivo_anterior!= None:
-                fout.write("<a href='{0}'>Anterior</a> | ".format(archivo_anterior))
-            fout.write("<a href='{0}'>Siguiente</a></p>".format(archivo_siguiente))
-            archivo_anterior = archivo_actual
-            archivo_actual = archivo_siguiente
-            fout.close()
-            fout = open('salida/pagina-{0}.html'.format(pagina), 'w')
-            cabecera_html(fout)
-    fout.write('</table>')
-    if archivo_anterior!= None:
-        fout.write("<p><a href='{0}'>Anterior</a></p>".format(archivo_anterior))
-
+    fout = open('salida/' + archivo_actual, 'w')
+    sql_cursor.execute("select blog, titulo, enlace, fecha from feeds order by fecha desc")
+    
+    while cabecera_html(fout, sql_cursor, pagina):        
+        pagina += 1
+        fout.close()
+        fout = open('salida/pagina-{0}.html'.format(pagina), 'w')        
+        
     fout.close()
 
 # Esta clase sirve para gestionar los hilos
@@ -171,7 +175,7 @@ generar_html(sql_conn)
 sql_conn.close()
 
 # Se comprueban los argumentos de la línea de comandos
-navegadorOk = True
+navegadorOk = False
 for arg in sys.argv:
     if '--no-browser' == arg:
         navegadorOk = False
