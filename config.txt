@@ -1,0 +1,3 @@
+<title>Nombre del sitio</title>
+<link>URL a la página principal del sitio</link>
+<description>Descripción del sitio</description>

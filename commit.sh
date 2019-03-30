@@ -21,10 +21,10 @@ cd $PLANET_PATH
 python3 planet.py --no-browser
 # Se copian los archivos html al repositorio local
 cd salida 
-cp *.html $LOCAL_REPO
+cp *.html *.xml $LOCAL_REPO
 # Se suben los cambios a Github
 cd $LOCAL_REPO
-git add *.html
+git add *.html *.xml
 git commit -a -m "Actualización $date_var"
 git push -u https://$USERNAME:$PASSWORD@$REMOTE_REPO master
 

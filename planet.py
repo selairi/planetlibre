@@ -117,6 +117,32 @@ def generar_html(sql_conn):
 
     fout.close()
 
+def generar_rss(sql_conn):
+    n = 0
+    sql_cursor = sql_conn.cursor()
+    fout = open('salida/feed.xml', 'w')
+    fout.write("""<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>\n""")
+    fin = open('config.txt', 'r')
+    fout.write(fin.read())
+    fin.close()
+    for row in sql_cursor.execute("select blog, titulo, enlace, fecha from feeds order by fecha desc"):
+        n += 1
+        fecha = time.gmtime(int(row[3]))
+        fout.write("""
+            <item>
+            <title>{blog}: {titulo}</title>
+            <link>{enlace}</link>
+            <description>{titulo}</description>
+            <pubDate>{fecha}</pubDate>
+            </item>""".format(blog=row[0], titulo=row[1], enlace=row[2], fecha=time.asctime(fecha)))
+        if n > 10:
+            break
+    fout.write("</channel>\n</rss>")
+    fout.close()
+ 
+
 # Esta clase sirve para gestionar los hilos
 class Hilos(threading.Thread):
     def __init__(self, blog, semaforo):
@@ -166,6 +192,9 @@ limpiar_base_datos(sql_conn)
 
 # Se generan los html en el directorio salida
 generar_html(sql_conn)
+
+# Se genera el RSS
+generar_rss(sql_conn)
 
 # Se cierra la base de datos
 sql_conn.close()
