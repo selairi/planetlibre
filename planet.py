@@ -52,10 +52,16 @@ def procesar_blog(sql_conn, blog):
     sql_cursor = sql_conn.cursor()
     for post in d.entries:
         fecha = None
-        if 'updated_parsed' in post:
+        if 'updated_parsed' in post  and post.updated_parsed != None:
             fecha = post.updated_parsed
-        elif 'published_parsed' in post:
+        elif 'published_parsed' in post and post.published_parsed != None:
             fecha = post.published_parsed
+        elif 'published' in post and post.published != None:
+            fecha = post.published
+        if fecha==None or not isinstance(fecha,time.struct_time):
+            #print(post)
+            continue
+        #print(fecha)
         sql_cursor.execute("""
             insert or replace into feeds (blog, titulo, enlace, fecha)
             values(?, ?, ?, ?);
@@ -180,6 +186,8 @@ fin = open("blogs_feeds.txt")
 semaforo = threading.Semaphore(10)  # Se permiten 10 a la vez
 hilos = []
 for blog in fin:
+    if blog.startswith('#'):
+        continue
     hilo = Hilos(blog, semaforo)
     hilos.append(hilo)
     hilo.start()
