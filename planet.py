@@ -95,13 +95,14 @@ def generar_html(sql_conn):
     archivo_anterior = None
     fout = open('salida/pagina-{0}.html'.format(pagina), 'w')
     cabecera_html(fout)
-    for row in sql_cursor.execute("select blog, titulo, enlace, fecha from feeds order by fecha desc"):
+    # Sólo se muestran las entradas con fecha menor a la actual
+    for row in sql_cursor.execute("select blog, titulo, enlace, fecha from feeds where fecha<? order by fecha desc", (int(time.time()),)):
         n += 1
         fecha = time.gmtime(int(row[3]))
         fout.write("""
         <tr>
-            <td>{0}</td><td>{3}</td>
-            <td><a href='{2}' target='blank'>{1}</a></td>
+            <td class='col_blog'>{0}</td><td class='col_fecha'>{3}</td>
+            <td class='col_enlace'><a href='{2}' target='blank'>{1}</a></td>
         </tr>
         """.format(row[0], row[1], row[2], "{0}-{1}-{2}".format(fecha[0], fecha[1], fecha[2])))
         if n % 1000 == 0:
