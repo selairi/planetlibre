@@ -89,11 +89,11 @@ def pie_html(fout):
 
 def generar_html(sql_conn):
     n = 0
-    pagina = 1
+    pagina = 0
     sql_cursor = sql_conn.cursor()
-    archivo_actual = 'pagina-{0}.html'.format(pagina)
+    archivo_actual = 'index.html'.format(pagina)
     archivo_anterior = None
-    fout = open('salida/pagina-{0}.html'.format(pagina), 'w')
+    fout = open('salida/index.html'.format(pagina), 'w')
     cabecera_html(fout)
     # Sólo se muestran las entradas con fecha menor a la actual
     for row in sql_cursor.execute("select blog, titulo, enlace, fecha from feeds where fecha<? order by fecha desc", (int(time.time()),)):
@@ -115,13 +115,14 @@ def generar_html(sql_conn):
             fout.write("<a href='{0}'>Siguiente</a></p>".format(archivo_siguiente))
             archivo_anterior = archivo_actual
             archivo_actual = archivo_siguiente
+            pie_html(fout)
             fout.close()
             fout = open('salida/pagina-{0}.html'.format(pagina), 'w')
             cabecera_html(fout)
     fout.write('</table>')
     if archivo_anterior!= None:
         fout.write("<p><a href='{0}'>Anterior</a></p>".format(archivo_anterior))
-
+    pie_html(fout)
     fout.close()
 
 def generar_rss(sql_conn):
@@ -159,13 +160,13 @@ class Hilos(threading.Thread):
         self.semaforo = semaforo
 
     def run(self):
-        semaforo.acquire()
+        self.semaforo.acquire()
         print('Procesando... {0}'.format(self.blog))
         self.sql_conn = sqlite3.connect('feeds.db')
         procesar_blog(self.sql_conn, self.blog)
         self.sql_conn.commit()
         self.sql_conn.close()
-        semaforo.release()
+        self.semaforo.release()
 
 
 # Se abre/crea la base de datos de feeds
@@ -216,5 +217,5 @@ for arg in sys.argv:
 
 if navegadorOk:
     # Se abre en el navegador la primera página de la salida:
-    webbrowser.open('salida/pagina-1.html')
+    webbrowser.open('salida/index.html')
 
