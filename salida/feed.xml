@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+<title>Nombre del sitio</title>
+<link>URL a la página principal del sitio</link>
+<description>Descripción del sitio</description>
+
+            <item>
+            <title>LiGNUx: El software de Hp llamado HPLIP anuncia su nueva versión 3.19.12 con soporte para nuevas impresoras</title>
+            <link>https://lignux.com/el-software-de-hp-llamado-hplip-anuncia-su-nueva-version-3-19-12-con-soporte-para-nuevas-impresoras/</link>
+            <description>El software de Hp llamado HPLIP anuncia su nueva versión 3.19.12 con soporte para nuevas impresoras</description>
+            <pubDate>Fri Dec 13 19:40:32 2019</pubDate>
+            </item>
+            <item>
+            <title>El atareao: Buenas prácticas con Docker</title>
+            <link>https://www.atareao.es/tutorial/docker/buenas-practicas-con-docker/</link>
+            <description>Buenas prácticas con Docker</description>
+            <pubDate>Fri Dec 13 18:00:00 2019</pubDate>
+            </item>
+            <item>
+            <title>KDE Blog: Disponible KDE Aplicaciones 19.12 #KDE</title>
+            <link>https://www.kdeblog.com/disponible-kde-aplicaciones-19-12-kde.html</link>
+            <description>Disponible KDE Aplicaciones 19.12 #KDE</description>
+            <pubDate>Fri Dec 13 16:29:59 2019</pubDate>
+            </item>
+            <item>
+            <title>victorhckinthefreeworld: #openSUSE Tumbleweed revisión de la semana 50 de 2019</title>
+            <link>https://victorhckinthefreeworld.com/2019/12/13/opensuse-tumbleweed-revision-de-la-semana-50-de-2019/</link>
+            <description>#openSUSE Tumbleweed revisión de la semana 50 de 2019</description>
+            <pubDate>Fri Dec 13 15:36:04 2019</pubDate>
+            </item>
+            <item>
+            <title>MuyLinux: Zorin OS 15.1 se arroga como refugio para los renegados de Windows 7</title>
+            <link>https://www.muylinux.com/2019/12/13/zorin-os-15-1/</link>
+            <description>Zorin OS 15.1 se arroga como refugio para los renegados de Windows 7</description>
+            <pubDate>Fri Dec 13 10:15:32 2019</pubDate>
+            </item>
+            <item>
+            <title>OMG! Ubuntu!: Zorin OS 15.1 Released with LibreOffice 6.3, Dark Mode Scheduling</title>
+            <link>https://www.omgubuntu.co.uk/2019/12/zorin-os-15-1-released-with-libreoffice-6-3-dark-mode-scheduling</link>
+            <description>Zorin OS 15.1 Released with LibreOffice 6.3, Dark Mode Scheduling</description>
+            <pubDate>Thu Dec 12 20:15:06 2019</pubDate>
+            </item>
+            <item>
+            <title>KDE Blog: KSquares, el juego de los cuadraditos para Linux</title>
+            <link>https://www.kdeblog.com/ksquares-el-juego-de-los-cuadraditos-para-linux.html</link>
+            <description>KSquares, el juego de los cuadraditos para Linux</description>
+            <pubDate>Thu Dec 12 20:10:17 2019</pubDate>
+            </item>
+            <item>
+            <title>MuyLinux: VirtualBox 6.1 mejora el soporte de Linux y de virtualización anidada</title>
+            <link>https://www.muylinux.com/2019/12/12/virtualbox-6-1-mejora-linux-virtualizacion-anidada/</link>
+            <description>VirtualBox 6.1 mejora el soporte de Linux y de virtualización anidada</description>
+            <pubDate>Thu Dec 12 18:59:54 2019</pubDate>
+            </item>
+            <item>
+            <title>LiGNUx: ¿Cómo convertir un disco duro en un NAS con Raspberry Pi 3?</title>
+            <link>https://lignux.com/como-convertir-un-disco-duro-en-un-nas-con-raspberry-pi-3/</link>
+            <description>¿Cómo convertir un disco duro en un NAS con Raspberry Pi 3?</description>
+            <pubDate>Thu Dec 12 18:15:59 2019</pubDate>
+            </item>
+            <item>
+            <title>victorhckinthefreeworld: dmenufm el gestor de archivos con aspecto similar a dmenu</title>
+            <link>https://victorhckinthefreeworld.com/2019/12/12/dmenufm-el-gestor-de-archivos-con-aspecto-similar-a-dmenu/</link>
+            <description>dmenufm el gestor de archivos con aspecto similar a dmenu</description>
+            <pubDate>Thu Dec 12 15:25:02 2019</pubDate>
+            </item>
+            <item>
+            <title>OMG! Ubuntu!: VirtualBox 6.1 Debuts with Linux 5.4 Support, Accelerated Video Playback + More</title>
+            <link>https://www.omgubuntu.co.uk/2019/12/virtualbox-6-1-released-new-features</link>
+            <description>VirtualBox 6.1 Debuts with Linux 5.4 Support, Accelerated Video Playback + More</description>
+            <pubDate>Thu Dec 12 15:16:29 2019</pubDate>
+            </item></channel>
+</rss>

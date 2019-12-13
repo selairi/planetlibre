@@ -1,0 +1,77 @@
+body {
+  font-family: sans-serif;
+  color: #f8f8f2;
+  margin-left:2%;
+
+  max-width: 80%;
+  background-color: #3c4556
+}
+
+h1 {
+    color: #f8f8f2;
+    text-align: center;
+}
+
+h2 {
+    color: #f8f8f2;
+}
+
+#topRight
+{
+    position: fixed;
+    top: 15%;
+    right: 1%;
+    width: 17%;
+    /*min-width: 170px;*/
+    padding: 3px 3px 3px 3px;
+    border-color: #282a36;
+    background: #44475a;
+    text-align: center; /* nuevo */
+}
+
+.navbar {
+  background-color: #282a36;
+  border-radius: 2px;
+  max-width: 800px;
+}
+
+.navbar a {
+  color: #aaa;
+  display: inline-block;
+  font-size: 15px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #8be9fd;
+}
+
+ /* unvisited link */
+a:link {
+  color: #bcc2cd;
+}
+
+/* visited link */
+a:visited {
+  color: #ff5555;
+}
+
+/* mouse over link */
+a:hover {
+  color: #8be9fd;
+}
+
+/* parrafo */
+
+div.ex2 {
+  max-width:90%;
+  left: 5%;
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+
