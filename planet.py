@@ -38,7 +38,7 @@
 #
 ######################################/
 
-
+import requests
 import feedparser
 import sqlite3
 import calendar
@@ -47,10 +47,9 @@ import threading
 import sys
 import webbrowser
 
-def procesar_blog(sql_conn, blog):
-    d = feedparser.parse(blog)
+def procesar_blog(sql_conn, entries):
     sql_cursor = sql_conn.cursor()
-    for post in d.entries:
+    for post in entries.entries:
         fecha = None
         if 'updated_parsed' in post  and post.updated_parsed != None:
             fecha = post.updated_parsed
@@ -65,7 +64,7 @@ def procesar_blog(sql_conn, blog):
         sql_cursor.execute("""
             insert or replace into feeds (blog, titulo, enlace, fecha)
             values(?, ?, ?, ?);
-        """, (d.feed.title, post.title, post.link, calendar.timegm(fecha)) )
+        """, (entries.feed.title, post.title, post.link, calendar.timegm(fecha)) )
     sql_conn.commit()
 
 def limpiar_base_datos(sql_conn):
@@ -101,10 +100,11 @@ def generar_html(sql_conn):
         fecha = time.gmtime(int(row[3]))
         fout.write("""
         <tr>
-            <td class='col_blog'>{0}</td><td class='col_fecha'>{3}</td>
-            <td class='col_enlace'><a href='{2}' target='blank'>{1}</a></td>
+            <!-- <td class='col_blog'>{0}</td> -->
+            <td class='col_fecha'>{3}</td>
+            <td class='col_enlace'>{0}: <br><a href='{2}' target='blank'>{1}</a></td>
         </tr>
-        """.format(row[0], row[1], row[2], "{0}-{1}-{2}".format(fecha[0], fecha[1], fecha[2])))
+        """.format(row[0], row[1], row[2], "{0}-{1}-{2}".format(fecha[0], format(fecha[1], "0>2"), format(fecha[2], "0>2"))))
         if n % 1000 == 0:
             pagina += 1
             fout.write('</table>')
@@ -150,23 +150,65 @@ def generar_rss(sql_conn):
     fout.write("</channel>\n</rss>")
     fout.close()
  
+# Se descarga el rss desde la URL
+def download_rss(url):
+    url_ok = False
+    try:
+        # Algunos blogs no permiten el acceso si no se pone el User-Agent
+        http_output = requests.get(url, timeout=20.0, headers={'User-Agent': 'Firefox'})
+        print("{0} {1}".format(http_output.status_code, url))
+        if http_output.status_code == 200:
+            #return http_output.text
+            return http_output.content
+        elif http_output.status_code == 404:
+            http_output = requests.get(url + "/feed", timeout=20.0, headers={'User-Agent': 'Firefox'})
+            if http_output.status_code == 200:
+                #return http_output.text
+                return http_output.content
+        return None
+    except requests.exceptions.ConnectionError as err:
+        print("Error al conectar con: {0}".format(url))
+        print(err)
+    except requests.exceptions.ReadTimeout:
+        print("Timeout: {0}".format(url))
+    return None 
+
 
 # Esta clase sirve para gestionar los hilos
 class Hilos(threading.Thread):
-    def __init__(self, blog, semaforo):
+    def __init__(self, blog, semaforo, semaforo_binario):
         threading.Thread.__init__(self)
         self.sql_conn = None 
         self.blog = blog
         self.semaforo = semaforo
+        self.semaforo_binario = semaforo_binario
 
     def run(self):
         self.semaforo.acquire()
-        print('Procesando... {0}'.format(self.blog))
-        self.sql_conn = sqlite3.connect('feeds.db')
-        procesar_blog(self.sql_conn, self.blog)
-        self.sql_conn.commit()
-        self.sql_conn.close()
+        print('Procesando: {0}'.format(self.blog))
+        rss = download_rss(self.blog)
+        entries = None
+        if rss != None:
+            entries = feedparser.parse(rss)
+            if len(entries.entries) == 0:
+                rss = download_rss(self.blog + "/feed")
+                if rss != None:
+                    entries = feedparser.parse(rss)
+        if entries == None or len(entries.entries) == 0:
+            print("Error no se han recibido entradas: {0}".format(self.blog))
+        elif entries != None and len(entries.entries) > 0:     
+            self.semaforo_binario.acquire()
+            self.sql_conn = sqlite3.connect('feeds.db')
+            procesar_blog(self.sql_conn, entries)
+            self.sql_conn.commit()
+            self.sql_conn.close()
+            self.semaforo_binario.release()
         self.semaforo.release()
+        if entries != None and len(entries.entries) > 0:
+            print('Terminado: {0} Entradas leídas: {1}'.format(self.blog, len(entries.entries)))
+        else:
+            print('Terminado: {0} Entradas leídas: 0'.format(self.blog))
+
 
 
 # Se abre/crea la base de datos de feeds
@@ -186,11 +228,12 @@ sql_conn.commit()
 # Se busca el listado de blogs en "blogs_feeds.txt" y se procesan
 fin = open("blogs_feeds.txt")
 semaforo = threading.Semaphore(10)  # Se permiten 10 a la vez
+semaforo_binario = threading.Semaphore(1)  # Semáforo que protege la base de datos
 hilos = []
 for blog in fin:
-    if blog.startswith('#'):
+    if blog.startswith('#') or len(blog.strip()) == 0:
         continue
-    hilo = Hilos(blog, semaforo)
+    hilo = Hilos(blog.strip(), semaforo, semaforo_binario)
     hilos.append(hilo)
     hilo.start()
 fin.close()
@@ -219,3 +262,4 @@ if navegadorOk:
     # Se abre en el navegador la primera página de la salida:
     webbrowser.open('salida/index.html')
 
+print('Finalizado')

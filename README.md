@@ -8,8 +8,10 @@ Este es un sencillo lector de RSS basado en python3. La lectura de las entradas 
 # Instalación
 
 Sólo hay que descargarlo e instalar el siguiente paquete:
+    
+    pip3 install feedparser
 
-    sudo apt-get install feedparser
+pip3 se puede encontrar en el paquete python-pip de la mayoría de distribuciones.
 
 Después se ejecuta con:
 
