@@ -47,6 +47,11 @@ import threading
 import sys
 import webbrowser
 
+# Limpia el html de los símbolos &, < y > para poder insertarlo dentro de otro HTML
+def clean_html(text):
+    return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+# Se inserta en la base de datos las nuevas entradas recibidas del blog
 def procesar_blog(sql_conn, entries):
     sql_cursor = sql_conn.cursor()
     for post in entries.entries:
@@ -74,12 +79,14 @@ def limpiar_base_datos(sql_conn):
     sql_cursor.execute("delete from feeds where fecha<? ", (fecha_hace_un_agno,))
     sql_conn.commit()
 
+# Se escribe cabecera.html en el stream que se pasa como argumento
 def cabecera_html(fout):
     fin = open("cabecera.html", 'r')
     for line in fin:
         fout.write(line)
     fin.close()
 
+# Se escribe pie.html en el stream que se la pasa como argumento
 def pie_html(fout):
     fin = open("pie.html", 'r')
     for line in fin:
@@ -100,11 +107,10 @@ def generar_html(sql_conn):
         fecha = time.gmtime(int(row[3]))
         fout.write("""
         <tr>
-            <!-- <td class='col_blog'>{0}</td> -->
             <td class='col_fecha'>{3}</td>
-            <td class='col_enlace'>{0}: <br><a href='{2}' target='blank'>{1}</a></td>
+            <td class='col_enlace'>{0}:<br><a href='{2}' target='blank'>{1}</a></td>
         </tr>
-        """.format(row[0], row[1], row[2], "{0}-{1}-{2}".format(fecha[0], format(fecha[1], "0>2"), format(fecha[2], "0>2"))))
+        """.format(clean_html(row[0]), clean_html(row[1]), row[2], "{0}-{1}-{2}".format(fecha[0], format(fecha[1], "0>2"), format(fecha[2], "0>2"))))
         if n % 1000 == 0:
             pagina += 1
             fout.write('</table>')
@@ -158,12 +164,10 @@ def download_rss(url):
         http_output = requests.get(url, timeout=20.0, headers={'User-Agent': 'Firefox'})
         print("{0} {1}".format(http_output.status_code, url))
         if http_output.status_code == 200:
-            #return http_output.text
             return http_output.content
         elif http_output.status_code == 404:
             http_output = requests.get(url + "/feed", timeout=20.0, headers={'User-Agent': 'Firefox'})
             if http_output.status_code == 200:
-                #return http_output.text
                 return http_output.content
         return None
     except requests.exceptions.ConnectionError as err:
@@ -196,7 +200,8 @@ class Hilos(threading.Thread):
                     entries = feedparser.parse(rss)
         if entries == None or len(entries.entries) == 0:
             print("Error no se han recibido entradas: {0}".format(self.blog))
-        elif entries != None and len(entries.entries) > 0:     
+        elif entries != None and len(entries.entries) > 0:
+            # Se necesita un semáforo binaria para controlar el acceso a SQLite
             self.semaforo_binario.acquire()
             self.sql_conn = sqlite3.connect('feeds.db')
             procesar_blog(self.sql_conn, entries)
