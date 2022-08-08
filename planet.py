@@ -36,7 +36,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 #
 #
-######################################/
+######################################
 
 import requests
 import feedparser
@@ -165,11 +165,6 @@ def download_rss(url):
         print("{0} {1}".format(http_output.status_code, url))
         if http_output.status_code == 200:
             return http_output.content
-        elif http_output.status_code == 404:
-            http_output = requests.get(url + "/feed", timeout=20.0, headers={'User-Agent': 'Firefox'})
-            if http_output.status_code == 200:
-                return http_output.content
-        return None
     except requests.exceptions.ConnectionError as err:
         print("Error al conectar con: {0}".format(url))
         print(err)
