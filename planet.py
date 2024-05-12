@@ -150,7 +150,7 @@ def generar_rss(sql_conn):
             <link>{enlace}</link>
             <description>{titulo}</description>
             <pubDate>{fecha}</pubDate>
-            </item>""".format(blog=row[0], titulo=row[1], enlace=row[2], fecha=time.asctime(fecha)))
+            </item>""".format(blog=row[0], titulo=row[1], enlace=clean_html(row[2]), fecha=time.asctime(fecha)))
         if n > 10:
             break
     fout.write("</channel>\n</rss>")
