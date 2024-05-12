@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+<title>Nombre del sitio</title>
+<link>URL a la página principal del sitio</link>
+<description>Descripción del sitio</description>
+
+            <item>
+            <title>cambiatealinux.com: alias - crea un alias a un comando o a una sentencia</title>
+            <link>https://www.cambiatealinux.com/crear-un-alias-a-un-comando-o-a-una-sentencia</link>
+            <description>alias - crea un alias a un comando o a una sentencia</description>
+            <pubDate>Sun May 12 09:00:13 2024</pubDate>
+            </item>
+            <item>
+            <title>OMG! Ubuntu: Ubuntu 24.04 LTS Runs Brilliantly on the Raspberry Pi 5</title>
+            <link>https://www.omgubuntu.co.uk/2024/05/ubuntu-24-04-raspberry-pi-5</link>
+            <description>Ubuntu 24.04 LTS Runs Brilliantly on the Raspberry Pi 5</description>
+            <pubDate>Sat May 11 22:20:00 2024</pubDate>
+            </item>
+            <item>
+            <title>DistritoTux: Transformación Épica: De Ubuntu 22.04 a un Escritorio de Ensueño, Increíblemente Hermoso</title>
+            <link>https://www.distritotux.cl/2024/05/transformacion-epica-de-ubuntu-2204-un.html</link>
+            <description>Transformación Épica: De Ubuntu 22.04 a un Escritorio de Ensueño, Increíblemente Hermoso</description>
+            <pubDate>Sat May 11 21:37:22 2024</pubDate>
+            </item>
+            <item>
+            <title>KDE Blog: Akademy-es 2024 de València #esLibre edition en Mancomún Podcast #akademyes</title>
+            <link>https://www.kdeblog.com/akademy-es-2024-de-valencia-eslibre-edition-en-mancomun-podcast-akademyes.html</link>
+            <description>Akademy-es 2024 de València #esLibre edition en Mancomún Podcast #akademyes</description>
+            <pubDate>Sat May 11 17:34:38 2024</pubDate>
+            </item>
+            <item>
+            <title>El Pingüino Tolkiano: La vuelta a Akregator</title>
+            <link>https://elpinguinotolkiano.wordpress.com/2024/05/11/la-vuelta-a-akregator/</link>
+            <description>La vuelta a Akregator</description>
+            <pubDate>Sat May 11 13:24:10 2024</pubDate>
+            </item>
+            <item>
+            <title>Ubunlog: GNOME presenta las novedades de esta semana</title>
+            <link>https://ubunlog.com/gnome-presenta-las-novedades-de-esta-semana/</link>
+            <description>GNOME presenta las novedades de esta semana</description>
+            <pubDate>Sat May 11 08:39:42 2024</pubDate>
+            </item>
+            <item>
+            <title>Ubuntu Peronista: ¿Cómo instalo el reproductor Strawberry en Ubuntu?</title>
+            <link>https://ubuntuperonista.blogspot.com/2024/05/como-instalar-strawberry-ubuntu.html</link>
+            <description>¿Cómo instalo el reproductor Strawberry en Ubuntu?</description>
+            <pubDate>Sat May 11 01:16:56 2024</pubDate>
+            </item>
+            <item>
+            <title>Desde Linux: Novedades sobre Distros del Linuxverso: Semana 18 del año 2024</title>
+            <link>https://blog.desdelinux.net/linuxverso-semana-18-2024/</link>
+            <description>Novedades sobre Distros del Linuxverso: Semana 18 del año 2024</description>
+            <pubDate>Fri May 10 23:17:53 2024</pubDate>
+            </item>
+            <item>
+            <title>Ubunlog: ¿Cómo mostrar el Prompt (PS1) del Terminal de Linux con colores?</title>
+            <link>https://ubunlog.com/prompt-terminal-linux-colores/</link>
+            <description>¿Cómo mostrar el Prompt (PS1) del Terminal de Linux con colores?</description>
+            <pubDate>Fri May 10 17:29:06 2024</pubDate>
+            </item>
+            <item>
+            <title>MuyLinux: Fedora Silverblue 40: guía de instalación y configuración</title>
+            <link>https://www.muylinux.com/2024/05/10/fedora-silverblue-40-tutorial/</link>
+            <description>Fedora Silverblue 40: guía de instalación y configuración</description>
+            <pubDate>Fri May 10 17:23:19 2024</pubDate>
+            </item>
+            <item>
+            <title>MuyLinux: Rocky Linux 9.4: novedades apegadas a RHEL, pero sobre el KIWI de SUSE</title>
+            <link>https://www.muylinux.com/2024/05/10/rocky-linux-9-4/</link>
+            <description>Rocky Linux 9.4: novedades apegadas a RHEL, pero sobre el KIWI de SUSE</description>
+            <pubDate>Fri May 10 15:11:21 2024</pubDate>
+            </item></channel>
+</rss>
