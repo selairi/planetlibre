@@ -6,6 +6,60 @@
 <description>Descripción del sitio</description>
 
             <item>
+            <title>Ubunlog: Bash Prompt Generator: Personaliza el Prompt de tu Terminal de Linux</title>
+            <link>https://ubunlog.com/bash-prompt-generator-personalizar-prompt-ps1-terminal-linux/</link>
+            <description>Bash Prompt Generator: Personaliza el Prompt de tu Terminal de Linux</description>
+            <pubDate>Mon May 13 04:00:54 2024</pubDate>
+            </item>
+            <item>
+            <title>Desde Linux: Novedades sobre Distros del Linuxverso: Semana 19 del año 2024</title>
+            <link>https://blog.desdelinux.net/linuxverso-semana-19-2024/</link>
+            <description>Novedades sobre Distros del Linuxverso: Semana 19 del año 2024</description>
+            <pubDate>Mon May 13 04:00:45 2024</pubDate>
+            </item>
+            <item>
+            <title>Ubunlog: Linux 6.9 llega con arranque más rápido y esta lista de novedades</title>
+            <link>https://ubunlog.com/linux-6-9-llega-con-arranque-mas-rapido-y-esta-lista-de-novedades/</link>
+            <description>Linux 6.9 llega con arranque más rápido y esta lista de novedades</description>
+            <pubDate>Sun May 12 21:44:34 2024</pubDate>
+            </item>
+            <item>
+            <title>DistritoTux: Aprende Terminal de Linux desde cero, video 24, "Leer,Escribir y Ejecutar"</title>
+            <link>https://www.distritotux.cl/2024/05/aprende-terminal-de-linux-desde-cero_12.html</link>
+            <description>Aprende Terminal de Linux desde cero, video 24, "Leer,Escribir y Ejecutar"</description>
+            <pubDate>Sun May 12 18:43:12 2024</pubDate>
+            </item>
+            <item>
+            <title>Ubuntu Peronista: ¿Cómo instalo el reproductor Strawberry en Ubuntu?</title>
+            <link>https://ubuntuperonista.blogspot.com/2024/05/como-instalar-strawberry-ubuntu.html</link>
+            <description>¿Cómo instalo el reproductor Strawberry en Ubuntu?</description>
+            <pubDate>Sun May 12 18:08:28 2024</pubDate>
+            </item>
+            <item>
+            <title>Ubunlog: Programas para leer en Linux</title>
+            <link>https://ubunlog.com/programas-para-leer-en-linux/</link>
+            <description>Programas para leer en Linux</description>
+            <pubDate>Sun May 12 17:11:45 2024</pubDate>
+            </item>
+            <item>
+            <title>DistritoTux: ¿Qué sabes de SparkyLinux?</title>
+            <link>https://www.distritotux.cl/2024/05/que-sabes-de-sparkylinux.html</link>
+            <description>¿Qué sabes de SparkyLinux?</description>
+            <pubDate>Sun May 12 17:02:15 2024</pubDate>
+            </item>
+            <item>
+            <title>THE_CHEI$: Fascinación futurista (II): Blade Runner</title>
+            <link>https://thecheis.com/2024/05/12/fascinacion-futurista-ii-blade-runner/</link>
+            <description>Fascinación futurista (II): Blade Runner</description>
+            <pubDate>Sun May 12 11:26:22 2024</pubDate>
+            </item>
+            <item>
+            <title>BricoGeek.com Blog: Visita guiada PrusaLab y Prusa Research 3D Printer Factory 2018</title>
+            <link>http://blog.bricogeek.com/noticias/tecnologia/visita-guiada-prusalab-y-prusa-research-3d-printer-factory-2018/?utm_source=blogfeed&amp;utm_medium=atom10&amp;utm_term=tecnologia&amp;utm_content=visita-guiada-prusalab-y-prusa-research-3d-printer-factory-2018&amp;utm_campaign=blog</link>
+            <description>Visita guiada PrusaLab y Prusa Research 3D Printer Factory 2018</description>
+            <pubDate>Sun May 12 10:40:00 2024</pubDate>
+            </item>
+            <item>
             <title>cambiatealinux.com: alias - crea un alias a un comando o a una sentencia</title>
             <link>https://www.cambiatealinux.com/crear-un-alias-a-un-comando-o-a-una-sentencia</link>
             <description>alias - crea un alias a un comando o a una sentencia</description>
@@ -16,59 +70,5 @@
             <link>https://www.omgubuntu.co.uk/2024/05/ubuntu-24-04-raspberry-pi-5</link>
             <description>Ubuntu 24.04 LTS Runs Brilliantly on the Raspberry Pi 5</description>
             <pubDate>Sat May 11 22:20:00 2024</pubDate>
-            </item>
-            <item>
-            <title>DistritoTux: Transformación Épica: De Ubuntu 22.04 a un Escritorio de Ensueño, Increíblemente Hermoso</title>
-            <link>https://www.distritotux.cl/2024/05/transformacion-epica-de-ubuntu-2204-un.html</link>
-            <description>Transformación Épica: De Ubuntu 22.04 a un Escritorio de Ensueño, Increíblemente Hermoso</description>
-            <pubDate>Sat May 11 21:37:22 2024</pubDate>
-            </item>
-            <item>
-            <title>KDE Blog: Akademy-es 2024 de València #esLibre edition en Mancomún Podcast #akademyes</title>
-            <link>https://www.kdeblog.com/akademy-es-2024-de-valencia-eslibre-edition-en-mancomun-podcast-akademyes.html</link>
-            <description>Akademy-es 2024 de València #esLibre edition en Mancomún Podcast #akademyes</description>
-            <pubDate>Sat May 11 17:34:38 2024</pubDate>
-            </item>
-            <item>
-            <title>El Pingüino Tolkiano: La vuelta a Akregator</title>
-            <link>https://elpinguinotolkiano.wordpress.com/2024/05/11/la-vuelta-a-akregator/</link>
-            <description>La vuelta a Akregator</description>
-            <pubDate>Sat May 11 13:24:10 2024</pubDate>
-            </item>
-            <item>
-            <title>Ubunlog: GNOME presenta las novedades de esta semana</title>
-            <link>https://ubunlog.com/gnome-presenta-las-novedades-de-esta-semana/</link>
-            <description>GNOME presenta las novedades de esta semana</description>
-            <pubDate>Sat May 11 08:39:42 2024</pubDate>
-            </item>
-            <item>
-            <title>Ubuntu Peronista: ¿Cómo instalo el reproductor Strawberry en Ubuntu?</title>
-            <link>https://ubuntuperonista.blogspot.com/2024/05/como-instalar-strawberry-ubuntu.html</link>
-            <description>¿Cómo instalo el reproductor Strawberry en Ubuntu?</description>
-            <pubDate>Sat May 11 01:16:56 2024</pubDate>
-            </item>
-            <item>
-            <title>Desde Linux: Novedades sobre Distros del Linuxverso: Semana 18 del año 2024</title>
-            <link>https://blog.desdelinux.net/linuxverso-semana-18-2024/</link>
-            <description>Novedades sobre Distros del Linuxverso: Semana 18 del año 2024</description>
-            <pubDate>Fri May 10 23:17:53 2024</pubDate>
-            </item>
-            <item>
-            <title>Ubunlog: ¿Cómo mostrar el Prompt (PS1) del Terminal de Linux con colores?</title>
-            <link>https://ubunlog.com/prompt-terminal-linux-colores/</link>
-            <description>¿Cómo mostrar el Prompt (PS1) del Terminal de Linux con colores?</description>
-            <pubDate>Fri May 10 17:29:06 2024</pubDate>
-            </item>
-            <item>
-            <title>MuyLinux: Fedora Silverblue 40: guía de instalación y configuración</title>
-            <link>https://www.muylinux.com/2024/05/10/fedora-silverblue-40-tutorial/</link>
-            <description>Fedora Silverblue 40: guía de instalación y configuración</description>
-            <pubDate>Fri May 10 17:23:19 2024</pubDate>
-            </item>
-            <item>
-            <title>MuyLinux: Rocky Linux 9.4: novedades apegadas a RHEL, pero sobre el KIWI de SUSE</title>
-            <link>https://www.muylinux.com/2024/05/10/rocky-linux-9-4/</link>
-            <description>Rocky Linux 9.4: novedades apegadas a RHEL, pero sobre el KIWI de SUSE</description>
-            <pubDate>Fri May 10 15:11:21 2024</pubDate>
             </item></channel>
 </rss>

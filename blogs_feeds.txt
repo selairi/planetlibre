@@ -64,3 +64,4 @@ https://56k.es/rss
 https://thecheis.com/rss
 https://diversistemas.com/feed
 https://ubuntuperonista.blogspot.com/feeds/posts/default?alt=rss
+https://blog.bricogeek.com/noticias/feed/
